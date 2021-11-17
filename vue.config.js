@@ -27,7 +27,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 module.exports = defineConfig({
     transpileDependencies: true,
-    publicPath: process.env.NODE_ENV === 'development' ? 'http://localhost:10087/' : './',
+    publicPath: process.env.VUE_APP_PUBLIC_PATH,
     lintOnSave: 'error',
     chainWebpack: (config) => {
         config.module.rule('svg').exclude.add(resolve('src/assets/svg')).end()
