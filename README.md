@@ -1,4 +1,6 @@
-# vue2_cli5
+# common-components
+
+基于webpack5新特性
 
 ## Project setup
 ```
