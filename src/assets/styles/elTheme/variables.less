@@ -1,0 +1,36 @@
+// sidebar
+@menuText: #333333;
+
+@menuBg: #fff;
+@menuHover: #f8f8f8;
+@menuItemHeight: 52px;
+
+@subMenuBg: #f7f8fa;
+@subMenuHover: #f8f8f8;
+@subMenuItemHeight: 52px;
+
+@menuActiveText: #006fff;
+@subMenuActiveText: #006fff; //https://github.com/ElemeFE/element/issues/12951
+@menuActiveBg: rgba(0, 111, 255, 0.1);
+@subMenuActiveBg: #f8f8f8;
+
+@sideBarWidth: 210px;
+
+@navBarBg: #fff;
+@navBarColor: #333;
+@navBarHeight: 60px;
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+// 关闭 stylelint-disable 包裹样式的规则检查
+/* stylelint-disable property-no-unknown */
+:export {
+    menuText: @menuText;
+    menuActiveText: @menuActiveText;
+    subMenuActiveText: @subMenuActiveText;
+    menuBg: @menuBg;
+    menuHover: @menuHover;
+    subMenuBg: @subMenuBg;
+    subMenuHover: @subMenuHover;
+    sideBarWidth: @sideBarWidth;
+}
+/* stylelint-enable property-no-unknown */
