@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-common-components
+  namespace: inner-management
+  labels:
+    app: web-common-components
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-common-components
+  template:
+    metadata:
+      labels:
+        app: web-common-components
+    spec:
+      containers:
+        - name: web-common-components
+          image: ${image}
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "256Mi"
+            limits:
+              cpu: "100m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-common-components
+  namespace: inner-management
+spec:
+  selector:
+    app: web-common-components
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 10087
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: web-common-components-ingress
+  namespace: inner-management
+#  annotations:
+#    nginx.ingress.kubernetes.io/whitelist-source-range: "39.170.10.78"
+spec:
+  rules:
+    - host: web-components.group-ds.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: web-common-components
+              servicePort: 80
