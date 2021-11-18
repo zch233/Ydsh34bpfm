@@ -82,6 +82,7 @@ module.exports = defineConfig({
         port: 10087,
         hot: true,
         host: '0.0.0.0',
+        allowedHosts: ['.group-ds.com'],
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
