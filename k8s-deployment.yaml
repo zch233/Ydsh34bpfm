@@ -46,8 +46,8 @@ kind: Ingress
 metadata:
   name: web-common-components-ingress
   namespace: inner-management
-#  annotations:
-#    nginx.ingress.kubernetes.io/whitelist-source-range: "39.170.10.78"
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: "39.170.10.78,121.43.237.197"
 spec:
   rules:
     - host: web-components.group-ds.com
