@@ -29,7 +29,6 @@ if (process.env.NODE_ENV !== 'development') {
 module.exports = defineConfig({
     transpileDependencies: true,
     publicPath: process.env.VUE_APP_PUBLIC_PATH,
-    // publicPath: 'auto',
     lintOnSave: 'error',
     chainWebpack: (config) => {
         config.module.rule('svg').exclude.add(resolve('src/assets/svg')).end()
@@ -62,10 +61,10 @@ module.exports = defineConfig({
                 '@': resolve('src'),
             },
         },
-        optimization: {
-            runtimeChunk: false,
-            splitChunks: false,
-        },
+        // optimization: {
+        //     runtimeChunk: false,
+        //     splitChunks: false,
+        // },
         plugins: [
             new ModuleFederationPlugin({
                 name: 'comApp',
@@ -94,9 +93,8 @@ module.exports = defineConfig({
         },
     },
     devServer: {
-        port: process.env.VUE_APP_PORT,
-        host: process.env.VUE_APP_HOST,
-        // allowedHosts: ['.group-ds.com'],
+        port: 10087,
+        hot: true,
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
