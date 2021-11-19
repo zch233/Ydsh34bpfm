@@ -9,8 +9,8 @@ module.exports = {
     },
     plugins: ['vue', 'prettier'],
     rules: {
-        'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+        'no-console': process.env.NODE_ENV === 'production' ? 'off' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'off' : 'off',
         'prettier/prettier': 'error',
         'generator-star-spacing': 'off',
         'import/no-named-as-default': 'off',
