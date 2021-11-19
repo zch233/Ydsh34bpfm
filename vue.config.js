@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 const CompressionPlugin = require('compression-webpack-plugin')
+const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin
 const path = require('path')
 function resolve(dir) {
     return path.join(__dirname, '.', dir)
@@ -40,15 +41,15 @@ module.exports = defineConfig({
             .use('svg-sprite-loader')
             .loader('svg-sprite-loader')
         config.optimization.delete('splitChunks')
-        config.plugin('module-federation-plugin').use(require('webpack').container.ModuleFederationPlugin, [
-            {
-                name: 'comApp',
-                filename: 'remoteEntry.js',
-                exposes: {
-                    './TestModel': './packages/test-model/index.vue',
-                },
-            },
-        ])
+        // config.plugin('module-federation-plugin').use(require('webpack').container.ModuleFederationPlugin, [
+        //     {
+        //         name: 'comApp',
+        //         filename: 'remoteEntry.js',
+        //         exposes: {
+        //             './TestModel': './packages/test-model/index.vue',
+        //         },
+        //     },
+        // ])
     },
     productionSourceMap: false,
     configureWebpack: {
@@ -60,7 +61,16 @@ module.exports = defineConfig({
                 '@': resolve('src'),
             },
         },
-        plugins: [...prodPlugins],
+        plugins: [
+            new ModuleFederationPlugin({
+                name: 'comApp',
+                filename: 'remoteEntry.js',
+                exposes: {
+                    './TestModel': './packages/test-model/index.vue',
+                },
+            }),
+            ...prodPlugins,
+        ],
     },
     css: {
         loaderOptions: {
@@ -80,7 +90,6 @@ module.exports = defineConfig({
     },
     devServer: {
         port: 10087,
-        hot: true,
         host: '0.0.0.0',
         allowedHosts: ['.group-ds.com'],
         headers: {
