@@ -5,7 +5,6 @@ import 'nprogress/nprogress.css'
 import { clearPending } from '@/utils/http/index.js'
 import store from '@/store'
 import { includes } from 'lodash'
-import { addRoutes } from '@/utils/AddRoutes.js'
 import Layout from '@/layout/index'
 Vue.use(VueRouter)
 
@@ -51,27 +50,17 @@ const router = new VueRouter({
     routes,
 })
 const excludePath = ['/login', '/404'] //排除的路径
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     clearPending()
     NProgress.start()
     const { token, hasRoute, menuList } = store.getters
-    console.log(token, hasRoute, menuList, to)
+    console.log({ token, hasRoute, menuList, to })
     //页面刷新重新addroute
     if (!hasRoute && !includes(excludePath, to.fullPath)) {
-        if (menuList.length > 0) {
-            addRoutes(menuList)
-            //路由匹配在添加之前就匹配完成 需要重定向
-            if (to.matched.length == 0) {
-                router.replace({ path: to.fullPath })
-            }
-        }
+        await store.dispatch('routes/init_routes')
+        next({ ...to, replace: true })
+        return
     }
-
-    // if (!token && to.fullPath !== '/login') {
-    //     router.replace({
-    //         name: 'login',
-    //     })
-    // }
     next()
 })
 router.afterEach(() => {
