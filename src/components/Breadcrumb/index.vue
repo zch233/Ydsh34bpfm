@@ -45,7 +45,6 @@ export default {
     },
     methods: {
         getBreadcrumb() {
-            console.log('@', this.$route)
             const { meta, path } = this.$route
             const activeMenu = get(meta, 'activeMenu', '')
             if (activeMenu) {

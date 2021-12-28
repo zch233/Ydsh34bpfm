@@ -27,7 +27,7 @@
 <script>
 import ScrollPane from './ScrollPane'
 import path from 'path'
-import { cloneDeep } from 'lodash'
+
 export default {
     name: 'TagsView',
     components: { ScrollPane },
@@ -104,7 +104,6 @@ export default {
             }
         },
         addTags() {
-            console.log(cloneDeep({ name: this.routeObj }))
             const { name } = this.$route
             if (name) {
                 this.$store.dispatch('tagsView/addView', this.routeObj)

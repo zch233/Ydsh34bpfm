@@ -53,8 +53,7 @@ const excludePath = ['/login', '/404'] //排除的路径
 router.beforeEach(async (to, from, next) => {
     clearPending()
     NProgress.start()
-    const { token, hasRoute, menuList } = store.getters
-    console.log({ token, hasRoute, menuList, to })
+    const { hasRoute } = store.getters
     //页面刷新重新addroute
     if (!hasRoute && !includes(excludePath, to.fullPath)) {
         await store.dispatch('routes/init_routes')
