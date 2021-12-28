@@ -3,7 +3,7 @@
         <transition-group name="breadcrumb">
             <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.key">
                 <span
-                    v-if="item.redirect === 'noRedirect' || index == levelList.length - 1 || !item.path"
+                    v-if="item.redirect === 'noRedirect' || index === levelList.length - 1 || !item.path"
                     class="no-redirect"
                     :class="{ 'last-item': index === levelList.length - 1 }"
                     >{{ item.group_title || item.meta.title }}</span
@@ -51,7 +51,7 @@ export default {
             if (activeMenu) {
                 let list = this.loopMenu(this.menuList, activeMenu)
                 console.log(list)
-                this.levelList = list.concat([{ meta, key: Math.random() }])
+                this.levelList = (list || []).concat([{ meta, key: Math.random() }])
             } else {
                 this.levelList = this.loopMenu(this.menuList, path)
             }
