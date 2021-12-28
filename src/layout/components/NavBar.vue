@@ -6,9 +6,6 @@
             <div class="logo-title"> 后台管理系统 </div>
         </div>
         <div class="right-menu">
-            <div class="right-menu-container">
-                <NavMenu />
-            </div>
             <screenfull class="right-menu-item hover-effect" />
             <el-tooltip content="布局大小" effect="dark" placement="bottom">
                 <size-select class="right-menu-item hover-effect" />
@@ -16,10 +13,6 @@
             <NotifyBadge class="right-menu-item hover-effect" :list="list" />
             <el-dropdown class="header-avatar" @command="dropItemHanlder">
                 <el-avatar size="medium" :src="avatarSrc" />
-                <!-- <div class="account-box">
-                    <i class="el-icon-s-custom"></i>
-                    <span class="text">{{ userInfo.account }}</span>
-                </div> -->
                 <template #dropdown>
                     <el-dropdown-menu v-if="userInfo">
                         <div class="header-drop-name-info">
@@ -48,7 +41,7 @@ import { get } from 'lodash'
 import { Image, Tooltip, Dropdown, DropdownMenu, DropdownItem, Avatar } from 'element-ui'
 import SizeSelect from '@/components/SizeSelect'
 import Screenfull from '@/components/Screenfull'
-import NavMenu from './NavMenu/index.vue'
+
 export default {
     name: 'NavBar',
     components: {
@@ -57,7 +50,6 @@ export default {
         ElTooltip: Tooltip,
         SizeSelect,
         Screenfull,
-        NavMenu,
         ElDropdown: Dropdown,
         ElDropdownMenu: DropdownMenu,
         ElDropdownItem: DropdownItem,
