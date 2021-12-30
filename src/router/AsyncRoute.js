@@ -9,7 +9,7 @@ export const constantRoutes = [
         path: '/list',
         name: 'List',
         component: () => import('@/views/List'),
-        meta: { title: 'List' },
+        meta: { title: '列表组件（List）' },
     },
 ]
 export const asyncRoutes = {}

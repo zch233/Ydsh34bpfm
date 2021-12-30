@@ -10,7 +10,7 @@ const routes = [
         path: '/list',
         name: 'List',
         component: () => import('@/views/Demo/List'),
-        meta: { title: 'List' },
+        meta: { title: '列表组件' },
     },
 ]
 
