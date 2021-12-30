@@ -29,7 +29,15 @@ if (process.env.NODE_ENV !== 'development') {
 module.exports = defineConfig({
     transpileDependencies: true,
     publicPath: process.env.VUE_APP_PUBLIC_PATH,
-    lintOnSave: 'error',
+    lintOnSave: 'warning',
+    pages: {
+        mobile: 'src/mobile.js',
+        // 当使用只有入口的字符串格式时，
+        // 模板会被推导为 `public/subpage.html`
+        // 并且如果找不到的话，就回退到 `public/index.html`。
+        // 输出文件名会被推导为 `subpage.html`。
+        index: 'src/main.js',
+    },
     chainWebpack: (config) => {
         config.module.rule('svg').exclude.add(resolve('src/assets/svg')).end()
 
