@@ -30,16 +30,6 @@ const routes = [
         component: Layout,
         children: [
             //不在侧边菜单显示且需要layout布局的路由
-
-            {
-                path: '/test5/detail',
-                name: 'test5.detail',
-                component: () => import('@/views/testViews/TestFive.vue'),
-                meta: {
-                    activeMenu: '/test5',
-                    title: '详情',
-                },
-            },
         ],
     },
 ]

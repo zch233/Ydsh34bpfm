@@ -1,7 +1,7 @@
 import router from '@/router'
 /* Layout */
 import Layout from '@/layout/index'
-import asyncRoutes from '@/router/AsyncRoute.js'
+import { asyncRoutes, constantRoutes } from '@/router/AsyncRoute.js'
 import { get } from 'lodash'
 
 const state = () => ({
@@ -21,19 +21,11 @@ const getMenus = async () => {
     return [
         {
             name: 'test1',
-            meta: {
-                // icon: 'el-icon-s-flag',
-                title: 'fiterOptions 横向树形控件',
-                // affix: true,
-            },
+            meta: { title: 'fiterOptions 横向树形控件' },
         },
         {
             name: 'test2',
-            meta: {
-                // icon: 'el-icon-s-flag',
-                title: '2',
-                // affix: true,
-            },
+            meta: { title: '2' },
         },
     ]
 }
@@ -46,7 +38,7 @@ const actions = {
                 name: 'layout',
                 component: Layout,
                 redirect: '',
-                children: [],
+                children: [...constantRoutes],
             }
             let routesChild = routes.children
             function loop(list) {
@@ -54,10 +46,12 @@ const actions = {
                     if (get(item, 'child', []).length > 0) {
                         loop(item.child)
                     } else {
-                        let routeItem = asyncRoutes[item.name]
-                        routeItem.meta = item.meta
-                        routesChild.push(routeItem)
-                        item.path = routeItem.path
+                        if (asyncRoutes[item.name]) {
+                            let routeItem = asyncRoutes[item.name]
+                            routeItem.meta = item.meta
+                            routesChild.push(routeItem)
+                            item.path = routeItem.path
+                        }
                     }
                 })
             }
@@ -72,7 +66,7 @@ const actions = {
                         redirect: { path: '/404' },
                     })
                     //设置页面展示菜单数组
-                    commit('SET_MENUS', menus)
+                    commit('SET_MENUS', routesChild)
                     commit('SET_HAS_ROUTE', true)
                     //返回登录成功后前往的页面地址
                     resolve(routes.redirect)
