@@ -12,6 +12,12 @@ const routes = [
         component: () => import('@/views/Demo/List'),
         meta: { title: '列表组件' },
     },
+    {
+        path: '/menu',
+        name: 'Menu',
+        component: () => import('@/views/Demo/Menu'),
+        meta: { title: '菜单组件' },
+    },
 ]
 
 const router = new VueRouter({
