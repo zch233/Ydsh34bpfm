@@ -39,7 +39,7 @@ export default {
     width: 100%;
     height: 100%;
     padding-left: 12px;
-    overflow: hidden;
+    overflow: auto;
     background-color: #f7f8fa;
     flex-direction: column;
 
