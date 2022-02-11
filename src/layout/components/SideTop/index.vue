@@ -7,14 +7,6 @@
             </div>
             <div class="label-info" v-show="opened">
                 <div class="label-title" slot="title">{{ title }}</div>
-                <el-dropdown @command="handleCommand" size="medium">
-                    <span class="el-dropdown-link"> 切换机构<i class="el-icon-refresh el-icon--right"></i> </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item v-for="item in list" :key="item[valueKey]" :command="item" class="org-item">{{
-                            item[labelKey]
-                        }}</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
             </div>
         </div>
     </el-tooltip>
@@ -22,10 +14,11 @@
 
 <script>
 import { find } from 'lodash'
-import { Dropdown, DropdownMenu, DropdownItem, Tooltip } from 'element-ui'
+import { Tooltip } from 'element-ui'
+
 export default {
     name: 'SideTop',
-    components: { ElDropdown: Dropdown, ElDropdownMenu: DropdownMenu, ElDropdownItem: DropdownItem, ElTooltip: Tooltip },
+    components: { ElTooltip: Tooltip },
     props: {
         value: {
             required: true,
