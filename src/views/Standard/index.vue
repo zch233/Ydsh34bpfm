@@ -1,6 +1,16 @@
 <template>
     <section class="standard">
         <div>
+            <h1>学习技巧</h1>
+            <ul>
+                <li
+                    >比一般人更深入一点，一点就够，例如大家都是 vue composition-api 好，不只是用就完事了，而是了解一点为什么好，和
+                    react hooks 什么区别之类的。</li
+                >
+                <li>定期让自己难受，难受说明你在进步，跳出舒适圈。</li>
+            </ul>
+        </div>
+        <div>
             <h1>工具</h1>
             <ul>
                 <li>
