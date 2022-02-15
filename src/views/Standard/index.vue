@@ -4,6 +4,10 @@
             <h1>学习技巧</h1>
             <ul>
                 <li
+                    >学习新语言、编程技巧的顺序应该自上而下，例如：webSocket、webRTC 之类的，应该先去学 socket、RTC，再去看
+                    webXXX，就可直接上手并会发现他只是一种实践，</li
+                >
+                <li
                     >比一般人更深入一点，一点就够，例如大家都是 vue composition-api 好，不只是用就完事了，而是了解一点为什么好，和
                     react hooks 什么区别之类的。</li
                 >
