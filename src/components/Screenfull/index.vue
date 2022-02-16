@@ -1,14 +1,19 @@
 <template>
     <div @click="click">
-        <svg-icon :name="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" :size="18" />
+        <!-- <svg-icon :name="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" :size="18" /> -->
+        <Icon :icon="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" class="fullscreen" />
     </div>
 </template>
 
 <script>
 import screenfull from 'screenfull'
+import Icon from '@/components/Icon'
 import { Message } from 'element-ui'
 export default {
     name: 'Screenfull',
+    components: {
+        Icon,
+    },
     data() {
         return {
             isFullscreen: false,

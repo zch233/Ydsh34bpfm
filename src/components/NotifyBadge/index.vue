@@ -2,7 +2,8 @@
     <div class="notify-badge">
         <el-dropdown trigger="click">
             <el-badge :value="1" class="n-icon-item" type="warning">
-                <svg-icon name="notice" :size="18" />
+                <!-- <svg-icon name="notice" :size="18" /> -->
+                <Icon icon="notice" />
             </el-badge>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item v-for="(item, index) in list" :key="index">
@@ -15,6 +16,8 @@
 
 <script>
 import { Dropdown, Badge, DropdownMenu, DropdownItem } from 'element-ui'
+import Icon from '@/components/Icon'
+
 export default {
     name: 'NotifyBadge',
     props: {
@@ -30,6 +33,7 @@ export default {
         ElDropdownMenu: DropdownMenu,
         ElDropdownItem: DropdownItem,
         ElBadge: Badge,
+        Icon,
     },
 }
 </script>

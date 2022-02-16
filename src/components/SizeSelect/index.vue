@@ -1,8 +1,9 @@
 <template>
     <el-dropdown trigger="click" @command="handleSetSize">
         <div>
-            <svg-icon name="size" :size="18" />
-        </div>
+            <!-- <svg-icon name="size" :size="18" /> -->
+            <Icon icon="size"
+        /></div>
         <el-dropdown-menu slot="dropdown">
             <el-dropdown-item v-for="item of sizeOptions" :key="item.value" :disabled="size === item.value" :command="item.value">
                 {{ item.label }}
@@ -13,6 +14,8 @@
 
 <script>
 import { Message, Dropdown, DropdownMenu, DropdownItem } from 'element-ui'
+import Icon from '@/components/Icon'
+
 export default {
     data() {
         return {
@@ -28,6 +31,7 @@ export default {
         ElDropdown: Dropdown,
         ElDropdownMenu: DropdownMenu,
         ElDropdownItem: DropdownItem,
+        Icon,
     },
     computed: {
         size() {

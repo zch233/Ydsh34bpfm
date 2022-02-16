@@ -48,6 +48,14 @@ module.exports = defineConfig({
             .end()
             .use('svg-sprite-loader')
             .loader('svg-sprite-loader')
+            .options({
+                symbolId: 'icon-[name]',
+            })
+            .end()
+            .before('svg-sprite-loader')
+            .use('svgo-loader')
+            .loader('svgo-loader')
+            .end()
         config.optimization.delete('splitChunks')
         // config.plugin('module-federation-plugin').use(require('webpack').container.ModuleFederationPlugin, [
         //     {
