@@ -17,5 +17,11 @@ export const constantRoutes = [
         component: () => import('@/views/Menu'),
         meta: { title: '菜单组件（List）' },
     },
+    {
+        path: '/sortButton',
+        name: 'SortButton',
+        component: () => import('@/views/SortButton'),
+        meta: { title: '排序按钮' },
+    },
 ]
 export const asyncRoutes = {}
