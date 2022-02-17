@@ -97,6 +97,11 @@ export default {
             transition: all 0.3s ease;
         }
 
+        .iconfont.first,
+        .center-text {
+            transition: all 0.2s ease;
+        }
+
         &.active {
             .center-text,
             .iconfont.first {
