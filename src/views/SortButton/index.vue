@@ -1,9 +1,9 @@
 <template>
     <div class="sort-button-demo">
         <div class="title">单个排序按钮</div>
-        <SortButton :data="singleSortButtonData" @handelSort="singleHandelSort" />
+        <SortButton :data="singleSortButtonData" @change="handelSort" />
         <div class="mul-title">多个排序按钮</div>
-        <SortButtonGroup :groupData="sortButtonData" @handelSortGroup="handelSortGroup" />
+        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" />
         <CodeBar :code="code" />
     </div>
 </template>
@@ -44,9 +44,9 @@ export default {
 
             code: ` 
         <!-- 单个排序按钮 -->
-        <SortButton :cont="singleSortButtonData" @handelSort="singleHandelSort" />
+        <SortButton :cont="singleSortButtonData" @change="handelSort" />
         <!-- 多个排序按钮 -->
-        <SortButtonGroup :groupData="sortButtonData" @handelSortGroup="handelSortGroup" />
+        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" />
         
         export default {
             components: {
@@ -77,7 +77,7 @@ export default {
                 }
             },
             methods: {
-                singleHandelSort({ sortBy, sort }) {
+                handelSort({ sortBy, sort }) {
                     console.log(sortBy, sort)
                 },
                 handelSortGroup({ sortBy, sort }) {
@@ -89,7 +89,7 @@ export default {
         }
     },
     methods: {
-        singleHandelSort({ sortBy, sort }) {
+        handelSort({ sortBy, sort }) {
             console.log(sortBy, sort)
         },
         handelSortGroup({ sortBy, sort }) {

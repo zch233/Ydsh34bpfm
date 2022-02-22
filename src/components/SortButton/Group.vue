@@ -5,7 +5,7 @@
             :key="item.type"
             :sortBy="sortBy"
             :data="item"
-            @handelSort="handelSortGroup"
+            @change="handelSortGroup"
             type="group"
         />
     </div>
@@ -32,7 +32,7 @@ export default {
     methods: {
         handelSortGroup({ sortBy, sort }) {
             this.sortBy = sortBy
-            this.$emit('handelSortGroup', {
+            this.$emit('change', {
                 sortBy,
                 sort,
             })

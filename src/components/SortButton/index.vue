@@ -54,7 +54,7 @@ export default {
                 this.singleSortBy = this.data.type
                 this.sort = this.sort === 'desc' ? 'asc' : 'desc'
             }
-            this.$emit('handelSort', {
+            this.$emit('change', {
                 sortBy: this.data.type,
                 sort: this.sort,
             })
