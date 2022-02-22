@@ -4,7 +4,7 @@
             v-for="item in groupData"
             :key="item.type"
             :sortBy="sortBy"
-            :cont="item"
+            :data="item"
             @handelSort="handelSortGroup"
             type="group"
         />

@@ -1,7 +1,7 @@
 <template>
     <div class="sort-button-demo">
         <div class="title">单个排序按钮</div>
-        <SortButton :cont="singleSortButtonData" @handelSort="singleHandelSort" />
+        <SortButton :data="singleSortButtonData" @handelSort="singleHandelSort" />
         <div class="mul-title">多个排序按钮</div>
         <SortButtonGroup :groupData="sortButtonData" @handelSortGroup="handelSortGroup" />
         <CodeBar :code="code" />

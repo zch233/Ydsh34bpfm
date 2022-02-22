@@ -1,11 +1,11 @@
 <template>
     <div class="sort-parent">
         <div
-            :class="{ active: type === 'group' ? cont.type === sortBy : cont.type === singleSortBy, 'sort-button': true }"
+            :class="{ active: type === 'group' ? data.type === sortBy : data.type === singleSortBy, 'sort-button': true }"
             @click="handelSort"
         >
-            <Icon class="iconfont first" :icon="cont.icon" />
-            <div class="center-text">{{ cont.text }}</div>
+            <Icon class="iconfont first" :icon="data.icon" />
+            <div class="center-text">{{ data.text }}</div>
             <Icon icon="arrowhead" :class="{ 'active-icon': sort === 'asc', arrowhead: true }" />
         </div>
     </div>
@@ -21,9 +21,9 @@ export default {
         Icon,
     },
     props: {
-        cont: {
+        data: {
             type: Object,
-            default: () => {},
+            default: () => ({}),
         },
         //用于判断多个排序按钮高亮哪一个
         sortBy: {
@@ -45,17 +45,17 @@ export default {
     methods: {
         handelSort() {
             if (this.type === 'group') {
-                if (this.sortBy == this.cont.type) {
+                if (this.sortBy === this.data.type) {
                     this.sort = this.sort === 'desc' ? 'asc' : 'desc'
                 } else {
                     this.sort = 'desc'
                 }
             } else {
-                this.singleSortBy = this.cont.type
+                this.singleSortBy = this.data.type
                 this.sort = this.sort === 'desc' ? 'asc' : 'desc'
             }
             this.$emit('handelSort', {
-                sortBy: this.cont.type,
+                sortBy: this.data.type,
                 sort: this.sort,
             })
         },
