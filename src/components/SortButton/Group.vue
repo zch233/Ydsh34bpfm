@@ -7,6 +7,8 @@
             :data="item"
             @change="handelSortGroup"
             type="group"
+            :defaultSort="item.type === defaultSelected ? defaultSort : 'desc'"
+            :selected="item.type === defaultSelected"
         />
     </div>
 </template>
@@ -18,10 +20,28 @@ export default {
     components: {
         SortButton,
     },
+    watch: {
+        defaultSelected: {
+            handler(val) {
+                this.sortBy = val
+            },
+            immediate: true,
+        },
+    },
     props: {
         groupData: {
             type: Array,
             default: () => [],
+        },
+        // 默认选中哪一个
+        defaultSelected: {
+            type: String,
+            default: '',
+        },
+        // 默认排序值 asc 升序，desc：降序
+        defaultSort: {
+            type: String,
+            default: 'desc',
         },
     },
     data() {

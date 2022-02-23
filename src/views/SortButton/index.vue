@@ -2,8 +2,12 @@
     <div class="sort-button-demo">
         <div class="title">单个排序按钮</div>
         <SortButton :data="singleSortButtonData" @change="handelSort" />
+        <div class="mul-title">单个排序按钮（selected：选中，defaultSort: 默认排序方式）</div>
+        <SortButton :data="singleSortButtonData" @change="handelSort" selected defaultSort="asc" />
         <div class="mul-title">多个排序按钮</div>
         <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" />
+        <div class="mul-title">多个排序按钮（defaultSelected：默认选中某个，defaultSort：默认选中的排序方式）</div>
+        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" defaultSelected="update_time" defaultSort="asc" />
         <CodeBar :code="code" />
     </div>
 </template>
@@ -25,28 +29,35 @@ export default {
             // 单个排序按钮
             singleSortButtonData: {
                 icon: 'visits', // svg名称
-                text: '访问量', // 按钮名称
+                label: '访问量', // 按钮名称
                 type: 'view_time', // 排序类型
             },
             // 排序按钮组
             sortButtonData: [
                 {
                     icon: 'visits', // svg名称
-                    text: '访问量', // 按钮名称
+                    label: '访问量', // 按钮名称
                     type: 'view_time', // 排序类型
                 },
                 {
                     icon: 'updateTime',
-                    text: '更新时间',
+                    label: '更新时间',
                     type: 'update_time',
                 },
             ],
 
             code: ` 
-        <!-- 单个排序按钮 -->
-        <SortButton :cont="singleSortButtonData" @change="handelSort" />
-        <!-- 多个排序按钮 -->
+        <div class="title">单个排序按钮</div>
+        <SortButton :data="singleSortButtonData" @change="handelSort" />
+
+        <div class="mul-title">单个排序按钮（selected：选中，defaultSort: 默认排序方式）</div>
+        <SortButton :data="singleSortButtonData" @change="handelSort" selected defaultSort="asc" />
+
+        <div class="mul-title">多个排序按钮</div>
         <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" />
+        
+        <div class="mul-title">多个排序按钮（defaultSelected：默认选中某个，defaultSort：默认选中的排序方式）</div>
+        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" defaultSelected="update_time" defaultSort="asc" />
         
         export default {
             components: {
@@ -58,19 +69,19 @@ export default {
                     // 单个排序按钮
                     singleSortButtonData: {
                         icon: 'visits', // svg名称
-                        text: '访问量', // 按钮名称
+                        label: '访问量', // 按钮名称
                         type: 'view_time', // 排序类型
                     },
                     // 排序按钮组
                     sortButtonData: [
                         {
                             icon: 'visits', // svg名称
-                            text: '访问量', // 按钮名称
+                            label: '访问量', // 按钮名称
                             type: 'view_time', // 排序类型
                         },
                         {
                             icon: 'updateTime',
-                            text: '更新时间',
+                            label: '更新时间',
                             type: 'update_time',
                         },
                     ],

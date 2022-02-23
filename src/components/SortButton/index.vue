@@ -5,7 +5,7 @@
             @click="handelSort"
         >
             <Icon class="iconfont first" :icon="data.icon" />
-            <div class="center-text">{{ data.text }}</div>
+            <div class="center-text">{{ data.label }}</div>
             <Icon icon="arrowhead" :class="{ 'active-icon': sort === 'asc', arrowhead: true }" />
         </div>
     </div>
@@ -19,6 +19,19 @@ export default {
     name: 'SortButton',
     components: {
         Icon,
+    },
+    watch: {
+        selected: {
+            handler(val) {
+                if (val === true) {
+                    if (this.type !== 'group') {
+                        this.singleSortBy = this.data.type
+                    }
+                    this.sort = this.defaultSort
+                }
+            },
+            immediate: true,
+        },
     },
     props: {
         data: {
@@ -34,6 +47,17 @@ export default {
         type: {
             type: String,
             default: '',
+        },
+
+        //默认是否选中
+        selected: {
+            type: Boolean,
+            default: false,
+        },
+        // 默认排序值 asc 升序，desc：降序
+        defaultSort: {
+            type: String,
+            default: 'desc',
         },
     },
     data() {
