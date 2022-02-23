@@ -7,7 +7,7 @@
             :data="item"
             @change="handelSortGroup"
             type="group"
-            :defaultSort="item.type === defaultSelected ? defaultSort : 'desc'"
+            :defaultSort="item.type === defaultSelected ? defaultSort : 'descend'"
             :selected="item.type === defaultSelected"
         />
     </div>
@@ -41,7 +41,7 @@ export default {
         // 默认排序值 asc 升序，desc：降序
         defaultSort: {
             type: String,
-            default: 'desc',
+            default: 'descend',
         },
     },
     data() {

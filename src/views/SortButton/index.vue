@@ -3,11 +3,16 @@
         <div class="title">单个排序按钮</div>
         <SortButton :data="singleSortButtonData" @change="handelSort" />
         <div class="mul-title">单个排序按钮（selected：选中，defaultSort: 默认排序方式）</div>
-        <SortButton :data="singleSortButtonData" @change="handelSort" selected defaultSort="asc" />
+        <SortButton :data="singleSortButtonData" @change="handelSort" selected defaultSort="ascend" />
         <div class="mul-title">多个排序按钮</div>
         <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" />
         <div class="mul-title">多个排序按钮（defaultSelected：默认选中某个，defaultSort：默认选中的排序方式）</div>
-        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" defaultSelected="update_time" defaultSort="asc" />
+        <SortButtonGroup
+            :groupData="sortButtonData"
+            @change="handelSortGroup"
+            defaultSelected="update_time"
+            defaultSort="ascend"
+        />
         <CodeBar :code="code" />
     </div>
 </template>
@@ -51,13 +56,13 @@ export default {
         <SortButton :data="singleSortButtonData" @change="handelSort" />
 
         <div class="mul-title">单个排序按钮（selected：选中，defaultSort: 默认排序方式）</div>
-        <SortButton :data="singleSortButtonData" @change="handelSort" selected defaultSort="asc" />
+        <SortButton :data="singleSortButtonData" @change="handelSort" selected defaultSort="ascend" />
 
         <div class="mul-title">多个排序按钮</div>
         <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" />
-        
+
         <div class="mul-title">多个排序按钮（defaultSelected：默认选中某个，defaultSort：默认选中的排序方式）</div>
-        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" defaultSelected="update_time" defaultSort="asc" />
+        <SortButtonGroup :groupData="sortButtonData" @change="handelSortGroup" defaultSelected="update_time" defaultSort="ascend" />
         
         export default {
             components: {

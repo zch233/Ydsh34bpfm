@@ -6,7 +6,7 @@
         >
             <Icon class="iconfont first" :icon="data.icon" />
             <div class="center-text">{{ data.label }}</div>
-            <Icon icon="arrowhead" :class="{ 'active-icon': sort === 'asc', arrowhead: true }" />
+            <Icon icon="arrowhead" :class="{ 'active-icon': sort === 'ascend', arrowhead: true }" />
         </div>
     </div>
 </template>
@@ -14,6 +14,8 @@
 <script>
 /**  @description:排序按钮  **/
 import Icon from '@/components/Icon'
+const DESCEND = 'descend'
+const ASCEND = 'ascend'
 
 export default {
     name: 'SortButton',
@@ -54,10 +56,10 @@ export default {
             type: Boolean,
             default: false,
         },
-        // 默认排序值 asc 升序，desc：降序
+        // 默认排序值 ascend 升序，descend：降序
         defaultSort: {
             type: String,
-            default: 'desc',
+            default: DESCEND,
         },
     },
     data() {
@@ -70,13 +72,13 @@ export default {
         handelSort() {
             if (this.type === 'group') {
                 if (this.sortBy === this.data.type) {
-                    this.sort = this.sort === 'desc' ? 'asc' : 'desc'
+                    this.sort = this.sort === DESCEND ? ASCEND : DESCEND
                 } else {
-                    this.sort = 'desc'
+                    this.sort = DESCEND
                 }
             } else {
                 this.singleSortBy = this.data.type
-                this.sort = this.sort === 'desc' ? 'asc' : 'desc'
+                this.sort = this.sort === DESCEND ? ASCEND : DESCEND
             }
             this.$emit('change', {
                 sortBy: this.data.type,
