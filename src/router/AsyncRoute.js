@@ -15,13 +15,19 @@ export const constantRoutes = [
         path: '/menu',
         name: 'Menu',
         component: () => import('@/views/Menu'),
-        meta: { title: '菜单组件（List）' },
+        meta: { title: '菜单组件（Menu）' },
     },
     {
         path: '/sortButton',
         name: 'SortButton',
         component: () => import('@/views/SortButton'),
-        meta: { title: '排序按钮' },
+        meta: { title: '排序按钮（SortButton）' },
+    },
+    {
+        path: '/labelSelector',
+        name: 'LabelSelector',
+        component: () => import('@/views/LabelSelector/index.vue'),
+        meta: { title: '标签选择器（LabelSelector）' },
     },
 ]
 export const asyncRoutes = {}
