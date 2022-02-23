@@ -7,7 +7,7 @@
             :data="item"
             @change="handelSortGroup"
             type="group"
-            :defaultSort="item.type === defaultSelected ? defaultSort : 'descend'"
+            :defaultSort="item.type === defaultSelected ? defaultSort : DESCEND"
             :selected="item.type === defaultSelected"
         />
     </div>
@@ -16,6 +16,7 @@
 <script>
 /**  @description:排序按钮组合  **/
 import SortButton from '@/components/SortButton'
+const DESCEND = 'descend'
 export default {
     components: {
         SortButton,
@@ -41,12 +42,13 @@ export default {
         // 默认排序值 asc 升序，desc：降序
         defaultSort: {
             type: String,
-            default: 'descend',
+            default: DESCEND,
         },
     },
     data() {
         return {
             sortBy: '',
+            DESCEND,
         }
     },
     methods: {
