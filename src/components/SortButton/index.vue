@@ -14,7 +14,7 @@
 <script>
 /**  @description:排序按钮  **/
 import Icon from '@/components/Icon'
-const DESCEND = 'descend'
+export const DESCEND = 'descend'
 const ASCEND = 'ascend'
 
 export default {
