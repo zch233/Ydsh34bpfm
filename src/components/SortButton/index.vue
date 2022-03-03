@@ -83,7 +83,7 @@ export default {
             }
             this.$emit('change', {
                 sortBy: this.data.type,
-                sort: this.sort === DESCEND ? 'desc' : 'asc',
+                sort: this.sort === DESCEND,
             })
         },
     },
