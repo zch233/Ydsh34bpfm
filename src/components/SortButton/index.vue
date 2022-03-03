@@ -83,7 +83,7 @@ export default {
             }
             this.$emit('change', {
                 sortBy: this.data.type,
-                sort: this.sort,
+                sort: this.sort === DESCEND ? 'desc' : 'asc',
             })
         },
     },
@@ -131,7 +131,8 @@ export default {
 
         &.active {
             .center-text,
-            .iconfont.first {
+            .iconfont.first,
+            .arrowhead {
                 color: #409eff;
             }
 
