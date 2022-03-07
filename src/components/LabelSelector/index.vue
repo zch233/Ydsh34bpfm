@@ -13,7 +13,7 @@
                     <i class="el-icon-close" @click="visible = !visible"></i>
                 </div>
                 <Input prefix-icon="el-icon-search" v-model="searchValue" :placeholder="'请输入名称搜索或添加'" />
-                <ElScrollbar tag="ul" class="dropdown-list">
+                <ul class="dropdown-list">
                     <li
                         :class="['dropdown-list-item', /_$/.test(item) ? 'active' : '']"
                         v-for="(item, index) in optionsList"
@@ -23,7 +23,7 @@
                         <span>{{ item.replace(/_$/, '') }}</span>
                         <i class="el-icon-check"></i>
                     </li>
-                </ElScrollbar>
+                </ul>
                 <div class="dropdown-selected">
                     <div class="title">已选择：</div>
                     <Tag type="info" closable v-for="(item, index) in selectedList" :key="index" @close="handleClose(item)">{{
@@ -50,7 +50,6 @@
  */
 import { Input, Tag, Button } from 'element-ui'
 import Popper from 'element-ui/src/utils/vue-popper'
-import ElScrollbar from 'element-ui/packages/scrollbar'
 
 export default {
     name: 'LabelSelector',
@@ -88,7 +87,6 @@ export default {
         Input,
         Tag,
         Button,
-        ElScrollbar,
     },
     mixins: [Popper],
     data: () => ({
@@ -237,6 +235,19 @@ export default {
         overflow-x: hidden;
         border: 1px solid #dcdfe6;
         border-radius: 2px;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(144, 147, 153, 0.3);
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            display: none;
+        }
 
         /deep/ .el-scrollbar__wrap {
             overflow-x: hidden;
