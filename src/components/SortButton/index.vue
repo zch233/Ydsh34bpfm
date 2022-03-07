@@ -6,7 +6,7 @@
         >
             <Icon class="iconfont first" :icon="data.icon" />
             <div class="center-text">{{ data.label }}</div>
-            <Icon icon="arrowhead" :class="{ 'active-icon': sort === 'ascend', arrowhead: true }" />
+            <Icon icon="arrowhead" :class="{ 'active-icon': sort === ASCEND, arrowhead: true }" />
         </div>
     </div>
 </template>
@@ -14,7 +14,7 @@
 <script>
 /**  @description:排序按钮  **/
 import Icon from '@/components/Icon'
-const DESCEND = 'descend'
+export const DESCEND = 'descend'
 const ASCEND = 'ascend'
 
 export default {
@@ -66,6 +66,7 @@ export default {
         return {
             sort: '',
             singleSortBy: '',
+            ASCEND,
         }
     },
     methods: {
@@ -130,7 +131,8 @@ export default {
 
         &.active {
             .center-text,
-            .iconfont.first {
+            .iconfont.first,
+            .arrowhead {
                 color: #409eff;
             }
 
