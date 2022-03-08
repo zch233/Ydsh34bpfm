@@ -30,7 +30,7 @@
         <div>
             <h1>代码</h1>
             <ul>
-                <li></li>
+                <li>使用 reset.css 能更好的使部分组件能够通用(伪)</li>
             </ul>
         </div>
     </section>
