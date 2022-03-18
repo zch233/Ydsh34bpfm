@@ -1,42 +1,43 @@
 <template>
     <div class="label-selector">
-        <div class="label-selector__slot" ref="reference">
-            <slot></slot>
-        </div>
-        <!-- mask -->
-        <div class="label-selector__mask" v-show="visible" @click="visible = !visible"></div>
-        <!-- dropdown -->
-        <transition name="el-zoom-in-top">
-            <div class="label-selector__dropdown" v-show="visible" ref="dropdown">
-                <div class="dropdown-title">
-                    <span>{{ title }}</span>
-                    <i class="el-icon-close" @click="visible = !visible"></i>
-                </div>
-                <Input prefix-icon="el-icon-search" v-model="searchValue" :placeholder="'请输入名称搜索或添加'" />
-                <ul class="dropdown-list">
-                    <li
-                        :class="['dropdown-list-item', /_$/.test(item) ? 'active' : '']"
-                        v-for="(item, index) in optionsList"
-                        :key="index"
-                        @click="handleAdd(item.replace(/_$/, ''))"
-                    >
-                        <span>{{ item.replace(/_$/, '') }}</span>
-                        <i class="el-icon-check"></i>
-                    </li>
-                </ul>
-                <div class="dropdown-selected">
-                    <div class="title">已选择：</div>
-                    <Tag type="info" closable v-for="(item, index) in selectedList" :key="index" @close="handleClose(item)">{{
-                        item
-                    }}</Tag>
-                </div>
-                <div class="dropdown-underline"></div>
-                <div class="dropdown-operation">
-                    <Button size="small" @click="handleClear">清除</Button>
-                    <Button size="small" type="primary" @click="handleConfirm">确认</Button>
-                </div>
+        <Popover v-model="visible" :placement="placement" popper-class="label-selector__popover">
+            <!-- reference -->
+            <div class="label-selector__slot" slot="reference" ref="reference">
+                <slot></slot>
             </div>
-        </transition>
+            <!-- dropdown -->
+            <transition name="el-zoom-in-top">
+                <div class="label-selector__dropdown" v-show="visible" ref="dropdown">
+                    <div class="dropdown-title">
+                        <span>{{ title }}</span>
+                        <i class="el-icon-close" @click="visible = !visible"></i>
+                    </div>
+                    <Input prefix-icon="el-icon-search" v-model="searchValue" :placeholder="'请输入名称搜索或添加'" />
+                    <ul class="dropdown-list">
+                        <li
+                            :class="['dropdown-list-item', /_$/.test(item) ? 'active' : '']"
+                            v-for="(item, index) in optionsList"
+                            :key="index"
+                            @click="handleAdd(item.replace(/_$/, ''))"
+                        >
+                            <span>{{ item.replace(/_$/, '') }}</span>
+                            <i class="el-icon-check"></i>
+                        </li>
+                    </ul>
+                    <div class="dropdown-selected">
+                        <div class="title">已选择：</div>
+                        <Tag type="info" closable v-for="(item, index) in selectedList" :key="index" @close="handleClose(item)">{{
+                            item
+                        }}</Tag>
+                    </div>
+                    <div class="dropdown-underline"></div>
+                    <div class="dropdown-operation">
+                        <Button size="small" @click="handleClear">清除</Button>
+                        <Button size="small" type="primary" @click="handleConfirm">确认</Button>
+                    </div>
+                </div>
+            </transition>
+        </Popover>
     </div>
 </template>
 
@@ -48,8 +49,7 @@
  * @param trigger   [String]        触发下拉的行为 hover, click
  * @param placement [String]        菜单弹出位置   (top|bottom|left|right)(-start|-end)
  */
-import { Input, Tag, Button } from 'element-ui'
-import Popper from 'element-ui/src/utils/vue-popper'
+import { Input, Tag, Button, Popover } from 'element-ui'
 
 export default {
     name: 'LabelSelector',
@@ -87,8 +87,8 @@ export default {
         Input,
         Tag,
         Button,
+        Popover,
     },
-    mixins: [Popper],
     data: () => ({
         visible: false,
         searchValue: '',
@@ -130,12 +130,6 @@ export default {
                 return state.toLowerCase().indexOf(value.toLowerCase()) !== -1
             }
         },
-        initDropdown() {
-            this.popperElm = this.$refs.dropdown
-            this.referenceElm = this.$refs.reference
-            this.currentPlacement = this.placement // 设置定位方式
-            this.createPopper()
-        },
         initEvent() {
             if (this.trigger === 'click') {
                 this.$refs.reference.addEventListener('click', () => {
@@ -174,7 +168,6 @@ export default {
         },
     },
     mounted() {
-        this.initDropdown()
         this.initEvent()
     },
 }
@@ -182,21 +175,8 @@ export default {
 
 <style lang="less" scoped>
 .label-selector {
-    position: relative;
-
     .label-selector__slot {
         display: inline-block;
-    }
-
-    .label-selector__mask {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 3000;
-        width: 100%;
-        height: 100%;
     }
 }
 
@@ -300,5 +280,19 @@ export default {
         height: 1px;
         background-color: #dcdfe6;
     }
+}
+</style>
+
+<style lang="less">
+.el-popover.label-selector__popover {
+    min-width: auto;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1;
+    color: #333;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 </style>
