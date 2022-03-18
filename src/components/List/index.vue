@@ -1,7 +1,13 @@
 <template>
     <GupoPullRefresh class="list" :class="[refreshing && 'refreshing']" v-model="refreshing" @refresh="onRefresh">
-        <p class="empty" v-if="empty">暂无数据</p>
-        <GupoList v-else v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <GupoEmpty v-if="empty" :description="emptyDescription || '暂无数据'" />
+        <GupoList
+            v-else
+            v-model="loading"
+            :finished="finished"
+            :finished-text="meta.current_page === 1 && finished ? '' : '没有更多了'"
+            @load="onLoad"
+        >
             <div class="list-header">
                 <slot name="header"></slot>
             </div>
@@ -15,7 +21,7 @@
 </template>
 
 <script>
-import { List, PullRefresh } from 'vant'
+import { Empty, List, PullRefresh } from 'vant'
 
 const defaultMeta = {
     current_page: 1,
@@ -34,8 +40,9 @@ export default {
             type: Object,
             default: () => ({ page: 'page', size: 'size' }),
         },
+        emptyDescription: String,
     },
-    components: { GupoPullRefresh: PullRefresh, GupoList: List },
+    components: { GupoPullRefresh: PullRefresh, GupoList: List, GupoEmpty: Empty },
     data() {
         return {
             empty: false,
@@ -104,12 +111,5 @@ export default {
             display: none;
         }
     }
-}
-
-.empty {
-    padding: 20px 0;
-    font-size: 14px;
-    color: #999;
-    text-align: center;
 }
 </style>
