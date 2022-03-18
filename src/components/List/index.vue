@@ -56,13 +56,13 @@ export default {
     methods: {
         async init() {
             this.meta = { ...defaultMeta }
+            this.refreshing = true
             this.empty = false
             this.loading = true
             this.finished = false
             await this.onLoad()
         },
         onRefresh() {
-            this.refreshing = true
             this.$emit('refresh')
             this.init().finally(() => (this.refreshing = false))
         },
