@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import List from '@/components/List'
+import List from '@/../packages/List'
 let last_page = 3
 export default {
     name: 'DemoList',

@@ -16,7 +16,7 @@
 
 <script>
 import { Dropdown, Badge, DropdownMenu, DropdownItem } from 'element-ui'
-import Icon from '@/components/Icon'
+import Icon from '@/../packages/Icon'
 
 export default {
     name: 'NotifyBadge',

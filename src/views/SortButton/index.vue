@@ -19,8 +19,8 @@
 
 <script>
 /**  @description:排序按钮案例  **/
-import SortButton from '@/components/SortButton'
-import SortButtonGroup from '@/components/SortButton/Group.vue'
+import SortButton from '@/../packages/SortButton'
+import SortButtonGroup from '@/../packages/SortButton/Group.vue'
 import CodeBar from '@/components/CodeBar'
 
 export default {

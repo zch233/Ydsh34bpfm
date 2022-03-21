@@ -15,7 +15,7 @@
 
 <script>
 /**  @description:排序按钮组合  **/
-import SortButton, { DESCEND } from '@/components/SortButton'
+import SortButton, { DESCEND } from './index'
 // const DESCEND = 'descend'
 export default {
     components: {

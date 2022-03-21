@@ -7,7 +7,7 @@
 
 <script>
 import screenfull from 'screenfull'
-import Icon from '@/components/Icon'
+import Icon from '@/../packages/Icon'
 import { Message } from 'element-ui'
 export default {
     name: 'Screenfull',

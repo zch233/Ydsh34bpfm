@@ -38,7 +38,7 @@
 <script>
 import { Table, TableColumn } from 'element-ui'
 import CodeBar from '@/components/CodeBar'
-import LabelSelector from '@/components/LabelSelector'
+import LabelSelector from '@/../packages/LabelSelector'
 
 export default {
     components: {

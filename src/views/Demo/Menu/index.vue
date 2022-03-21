@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import Menu from '@/components/Menu'
+import Menu from '@/../packages/Menu'
 
 export default {
     name: 'DemoMenu',

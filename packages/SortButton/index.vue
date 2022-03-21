@@ -13,7 +13,7 @@
 
 <script>
 /**  @description:排序按钮  **/
-import Icon from '@/components/Icon'
+import Icon from '../Icon'
 export const DESCEND = 'descend'
 const ASCEND = 'ascend'
 
