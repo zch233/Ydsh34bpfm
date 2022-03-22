@@ -18,6 +18,12 @@ export const constantRoutes = [
         meta: { title: '菜单组件（Menu）' },
     },
     {
+        path: '/page-nav',
+        name: 'PageNav',
+        component: () => import('@/views/PageNav'),
+        meta: { title: '导航（PageNav）' },
+    },
+    {
         path: '/sortButton',
         name: 'SortButton',
         component: () => import('@/views/SortButton'),

@@ -18,6 +18,12 @@ const routes = [
         component: () => import('@/views/Demo/Menu'),
         meta: { title: '菜单组件' },
     },
+    {
+        path: '/page-nav',
+        name: 'PageNav',
+        component: () => import('@/views/Demo/PageNav'),
+        meta: { title: '页头' },
+    },
 ]
 
 const router = new VueRouter({
