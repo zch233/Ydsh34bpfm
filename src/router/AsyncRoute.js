@@ -24,6 +24,12 @@ export const constantRoutes = [
         meta: { title: '导航（PageNav）' },
     },
     {
+        path: '/page-footer',
+        name: 'PageFooter',
+        component: () => import('@/views/PageFooter'),
+        meta: { title: '页脚（PageFooter）' },
+    },
+    {
         path: '/sortButton',
         name: 'SortButton',
         component: () => import('@/views/SortButton'),

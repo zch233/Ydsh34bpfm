@@ -24,6 +24,12 @@ const routes = [
         component: () => import('@/views/Demo/PageNav'),
         meta: { title: '页头' },
     },
+    {
+        path: '/page-footer',
+        name: 'PageFooter',
+        component: () => import('@/views/Demo/PageFooter'),
+        meta: { title: '页脚' },
+    },
 ]
 
 const router = new VueRouter({
