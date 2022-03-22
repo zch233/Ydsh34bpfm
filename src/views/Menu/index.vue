@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .iframeWrapper {
     padding: 24px;
 }
