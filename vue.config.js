@@ -94,6 +94,13 @@ module.exports = defineConfig({
     },
     css: {
         loaderOptions: {
+            css: {
+                modules: {
+                    // https://next.cli.vuejs.org/guide/css.html#css-modules
+                    // 此特性是为了将变量从 CSS 传递给 JS。CSS Module 通过 Interoperable CSS (ICSS) 实现此特性，ICSS 作为 CSS Modules 的低级文件格式规范，只是在标准 CSS 中额外增加了两个的伪选择器 :import                    // 此特性是为了将变量从 CSS 传递给 JS。CSS Module 通过 Interoperable CSS (ICSS) 实现此特性，ICSS 作为 CSS Modules 的低级文件格式规范，只是在标准 CSS 中额外增加了两个的伪选择器 :import 和 :export。// https://juejin.cn/post/6992428132263264264#heading-5和:export。// https://juejin.cn/post/6992428132263264264#heading-5
+                    mode: 'icss',
+                },
+            },
             less: {
                 lessOptions: {
                     javascriptEnabled: true,
