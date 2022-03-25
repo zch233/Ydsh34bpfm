@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkvue2_cli5"]=self["webpackChunkvue2_cli5"]||[]).push([[152],{1152:function(e,u,r){r.r(u),r.d(u,{default:function(){return i}});var t,n,l={created(){const{params:e,query:u}=this.$route,{path:r}=e;this.$router.replace({path:"/"+r,query:u})},render:function(e){return e()}},c=l,a=r(1001),s=(0,a.Z)(c,t,n,!1,null,null,null),i=s.exports}}]);
