@@ -2,19 +2,21 @@
     <section class="demo">
         <CodeBar :code="code" />
         <div class="iframeWrapper">
-            <iframe frameborder="0" src="/mobile.html/#/menu"></iframe>
+            <iframe frameborder="0" :src="publicURL + 'mobile.html#/menu'"></iframe>
         </div>
     </section>
 </template>
 
 <script>
 import CodeBar from '@/components/CodeBar'
+import { publicURL } from '@/utils/validate';
 
 export default {
     name: 'DemoMenu',
     components: { CodeBar },
     data() {
         return {
+            publicURL,
             code: `
 <p>正常</p>
 <Menu :menus="[

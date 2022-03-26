@@ -2,19 +2,21 @@
     <section class="demo">
         <CodeBar :code="code" />
         <div class="iframeWrapper">
-            <iframe frameborder="0" src="/mobile.html/#/list"></iframe>
+            <iframe frameborder="0" :src="publicURL + 'mobile.html#/list'"></iframe>
         </div>
     </section>
 </template>
 
 <script>
 import CodeBar from '@/components/CodeBar'
+import { publicURL } from '@/utils/validate';
 
 export default {
     name: 'DemoList',
     components: { CodeBar },
     data() {
         return {
+            publicURL,
             code: `
 <List :list-api="gitList">
     <template #default="{item}">
