@@ -1,5 +1,5 @@
 <template>
-    <section class="demo">
+    <section class="mobileDemo">
         <CodeBar :code="code" />
         <div class="iframeWrapper">
             <iframe frameborder="0" :src="publicURL + 'mobile.html#/menu'"></iframe>
@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .iframeWrapper {
     padding: 24px;
 }

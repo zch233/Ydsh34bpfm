@@ -2,8 +2,14 @@ export const constantRoutes = [
     {
         path: '/standard',
         name: 'Standard',
-        component: () => import('@/views/Standard/index.vue'),
-        meta: { title: '代码规范' },
+        component: () => import('@/views/Standard/README.md'),
+        meta: { title: '代码规范', markdown: true },
+    },
+    {
+        path: '/codeReview',
+        name: 'CodeReview',
+        component: () => import('@/views/CodeReview/README.md'),
+        meta: { title: 'Code Review 规范', markdown: true },
     },
     {
         path: '/list',
