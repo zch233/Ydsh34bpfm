@@ -9,7 +9,10 @@
         </div>
         <div class="router-main">
             <transition name="fade-transform" mode="out-in">
-                <router-view :key="routeKey" />
+                <Markdown v-if="$route.meta.markdown">
+                    <router-view :key="routeKey" />
+                </Markdown>
+                <router-view :key="routeKey" v-else />
             </transition>
         </div>
     </section>
@@ -18,9 +21,11 @@
 <script>
 import Breadcrumb from '@/components/Breadcrumb'
 import TagsView from './TagsView/index'
+import Markdown from '@/layout/components/Markdown';
 export default {
     name: 'AppMain',
     components: {
+        Markdown,
         Breadcrumb,
         TagsView,
     },
@@ -63,6 +68,7 @@ export default {
     .router-main {
         flex: 1 1;
         background-color: #fff;
+        padding: 24px;
     }
 }
 </style>
