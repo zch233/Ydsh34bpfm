@@ -116,8 +116,6 @@ export default {
 
 <style lang="less" scoped>
 .label-selector-demo {
-    padding: 20px;
-
     .title {
         margin: 25px 0 20px;
         font-size: 22px;

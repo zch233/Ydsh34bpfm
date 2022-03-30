@@ -1,5 +1,5 @@
 <template>
-    <section class="demo">
+    <section class="mobileDemo">
         <CodeBar :code="code" />
         <div class="iframeWrapper">
             <iframe frameborder="0" src="/mobile.html/#/page-footer"></iframe>
@@ -25,5 +25,3 @@ export default {
     },
 }
 </script>
-
-<style lang="less" scoped></style>
