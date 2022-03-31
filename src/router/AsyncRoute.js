@@ -12,6 +12,12 @@ export const constantRoutes = [
         meta: { title: 'Code Review 规范', markdown: true },
     },
     {
+        path: '/vue3Learn',
+        name: 'Vue3Learn',
+        component: () => import('@/views/Vue3Learn/README.md'),
+        meta: { title: 'Vue3 踩坑记录', markdown: true },
+    },
+    {
         path: '/list',
         name: 'List',
         component: () => import('@/views/List'),
