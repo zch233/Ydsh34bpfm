@@ -221,3 +221,46 @@
         }
         </script>
         ```
+
+-   [v-for 中的 Ref 数组](https://v3.cn.vuejs.org/guide/migration/array-refs.html#%E8%BF%81%E7%A7%BB%E7%AD%96%E7%95%A5)
+
+    -   在 Vue 2 中，在 v-for 里使用的 ref attribute 会用 ref 数组填充相应的 $refs property，如下所示，会得到一个数组
+
+        ```vue
+        <div v-for="item in list" ref="itemRefs"></div>
+        ```
+
+    -   在 Vue 3 中，这样的用法将不再在 $ref 中自动创建数组，需要使用更为灵活的方式
+
+        ```vue
+        <div v-for="item in list" :ref="setItemRef"></div>
+
+        export default { data() { return { itemRefs: [] } }, methods: { setItemRef(el) { if (el) { this.itemRefs.push(el) } } }, }
+        ```
+
+-   [router-link 的 tag 属性问题](https://router.vuejs.org/zh/api/#custom)
+
+    -   在 vue-router4 中再使用 tag 属性的话会报警告，这是因为在 vue-routerv3.1.x 以上版本，新增 v-slot，推荐使用 custom、v-slot 代替 tag 属性，官方文档中的介绍是：
+
+        ```
+        <router-link> 是否应该将其内容包裹在 <a> 元素中，在使用 v-slot 创建自定义 RouterLink 时很有用。
+        默认情况下，<router-link> 会将其内容包裹在 <a> 元素中，即使使用 v-slot 也是如此，传递自定义的 prop，可以去除这种行为。
+        ```
+
+    -   例如：
+
+        ```
+        <router-link to="/home" custom v-slot="{ navigate, href, route }">
+          <a :href="href" @click="navigate">{{ route.fullPath }}</a>
+        </router-link>
+
+        将会渲染成 <a href="/home">/home</a>
+
+        <router-link to="/home" v-slot="{ route }">
+          <span>{{ route.fullPath }}</span>
+        </router-link>
+
+        渲染成 <a href="/home"><span>/home</span></a>
+        ```
+
+    ​
