@@ -1,6 +1,13 @@
 <template>
     <div class="label-selector">
-        <Popover v-model="visible" :placement="placement" popper-class="label-selector__popover">
+        <Popover
+            v-model="visible"
+            :trigger="trigger"
+            :placement="placement"
+            popper-class="label-selector__popover"
+            v-bind="$attrs"
+            v-on="$listeners"
+        >
             <!-- reference -->
             <div class="label-selector__slot" slot="reference" ref="reference">
                 <slot></slot>
@@ -113,8 +120,7 @@ export default {
     },
     computed: {
         optionsList() {
-            let arr = JSON.parse(JSON.stringify(this.newOptions))
-            let results = this.searchValue ? arr.filter(this.searchFilter(this.searchValue)) : arr
+            let results = this.searchValue ? this.newOptions.filter(this.searchFilter(this.searchValue)) : this.newOptions
             let _results = results.map((item) => {
                 if (this.data.includes(item)) {
                     item += '_'
@@ -128,20 +134,6 @@ export default {
         searchFilter(value) {
             return (state) => {
                 return state.toLowerCase().indexOf(value.toLowerCase()) !== -1
-            }
-        },
-        initEvent() {
-            if (this.trigger === 'click') {
-                this.$refs.reference.addEventListener('click', () => {
-                    this.visible = true
-                })
-            } else if (this.trigger === 'hover') {
-                this.$refs.reference.addEventListener('mouseover', () => {
-                    this.visible = true
-                })
-                this.$refs.dropdown.addEventListener('mouseleave', () => {
-                    this.visible = false
-                })
             }
         },
         handleAdd(item) {
@@ -166,9 +158,6 @@ export default {
             this.$emit('dataChange', this.selectedList)
             this.visible = false
         },
-    },
-    mounted() {
-        this.initEvent()
     },
 }
 </script>
@@ -198,6 +187,7 @@ export default {
         i {
             font-size: 18px;
             font-weight: bold;
+            cursor: pointer;
         }
     }
 
