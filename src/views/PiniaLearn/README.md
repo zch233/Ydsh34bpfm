@@ -1,3 +1,5 @@
+> Pinia 正式成为 Vue 官方默认推荐的状态管理库
+
 ## 安装
 
 [官网](https://pinia.vuejs.org/)
