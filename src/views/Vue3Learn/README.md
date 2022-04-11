@@ -238,7 +238,7 @@
         export default { data() { return { itemRefs: [] } }, methods: { setItemRef(el) { if (el) { this.itemRefs.push(el) } } }, }
         ```
 
--   [router-link 的 tag 属性问题](https://router.vuejs.org/zh/api/#custom)
+-   [router-link 的 tag 属性问题](https://router.vuejs.org/zh/api/#router-link-%E7%9A%84-v-slot)
 
     -   在 vue-router4 中再使用 tag 属性的话会报警告，这是因为在 vue-routerv3.1.x 以上版本，新增 v-slot，推荐使用 custom、v-slot 代替 tag 属性，官方文档中的介绍是：
 
@@ -261,6 +261,14 @@
         </router-link>
 
         渲染成 <a href="/home"><span>/home</span></a>
+
+        参数：
+        · href：解析后的 URL。将会作为一个 `<a>` 元素的 href 属性。如果什么都没提供，则它会包含 base。
+        · route：解析后的规范化的地址。
+        · navigate：触发导航的函数。 会在必要时自动阻止事件，和 router-link 一样。例如：ctrl 或者 cmd + 点击仍然会被 navigate 忽略。
+          也就是说，例如 <a :href="href" @click="navigate"></a> 这样的情况，href 会失效。
+        · isActive：如果需要应用 active class，则为 true。允许应用一个任意的 class。
+        · isExactActive：如果需要应用 exact active class，则为 true。允许应用一个任意的 class。
         ```
 
     ​
