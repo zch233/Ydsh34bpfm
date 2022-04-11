@@ -235,7 +235,7 @@
         ```vue
         <div v-for="item in list" :ref="setItemRef"></div>
 
-        export default { data() { return { itemRefs: [] } }, methods: { setItemRef(el) { if (el) { this.itemRefs.push(el) } } }, }
+        export default { data() { return { itemRefs: [] } }, methods: { setItemRef(el) { if (el) { this.itemRefs.push(el) } } } }
         ```
 
 -   [router-link 的 tag 属性问题](https://router.vuejs.org/zh/api/#custom)
