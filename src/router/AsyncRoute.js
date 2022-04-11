@@ -18,6 +18,12 @@ export const constantRoutes = [
         meta: { title: 'Vue3 踩坑记录', markdown: true },
     },
     {
+        path: '/vue3Skill',
+        name: 'Vue3Skill',
+        component: () => import('@/views/Vue3Skill/README.md'),
+        meta: { title: 'Vue3 小技巧', markdown: true },
+    },
+    {
         path: '/piniaLearn',
         name: 'PiniaLearn',
         component: () => import('@/views/PiniaLearn/README.md'),
