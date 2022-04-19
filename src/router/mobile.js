@@ -30,6 +30,12 @@ const routes = [
         component: () => import('@/views/Demo/PageFooter'),
         meta: { title: '页脚' },
     },
+    {
+        path: '/signature-pad',
+        name: 'SignaturePad',
+        component: () => import('@/views/Demo/SignaturePad'),
+        meta: { title: '签名版' },
+    },
 ]
 
 const router = new VueRouter({

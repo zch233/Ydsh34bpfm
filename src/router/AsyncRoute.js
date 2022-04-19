@@ -54,6 +54,12 @@ export const constantRoutes = [
         meta: { title: '页脚（PageFooter）' },
     },
     {
+        path: '/signature-pad',
+        name: 'SignaturePad',
+        component: () => import('@/views/SignaturePad'),
+        meta: { title: '签名版（SignaturePad）' },
+    },
+    {
         path: '/sortButton',
         name: 'SortButton',
         component: () => import('@/views/SortButton'),
