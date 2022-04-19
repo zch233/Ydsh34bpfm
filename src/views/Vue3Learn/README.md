@@ -98,7 +98,7 @@
 
 -   实现防抖效果：
 
-    ```vue
+    ```
     <template>
         <input type="text" v-model="keyword" />
         <h3>{{ keyword }}</h3>
@@ -158,7 +158,7 @@
 
 -   什么是 Teleport（传送）？—— `Teleport` 是一种能够将我们的<strong style="color:#DD5145">组件 html 结构</strong>移动到指定位置的技术。
 
-    ```vue
+    ```
     <teleport to="移动位置">
     	<div v-if="isShow" class="mask">
     		<div class="dialog">
@@ -184,7 +184,7 @@
 
     -   使用`Suspense`包裹组件，并配置好`default` 与 `fallback`
 
-        ```vue
+        ```
         <template>
             <div class="app">
                 <h3>我是App组件</h3>
@@ -208,13 +208,13 @@
 
     -   父组件中绑定事件
 
-        ```vue
+        ```
         <my-component v-on:close="handleComponentEvent" v-on:click="handleNativeClickEvent" />
         ```
 
     -   子组件中声明自定义事件
 
-        ```vue
+        ```
         <script>
         export default {
             emits: ['close'],
@@ -226,13 +226,13 @@
 
     -   在 Vue 2 中，在 v-for 里使用的 ref attribute 会用 ref 数组填充相应的 $refs property，如下所示，会得到一个数组
 
-        ```vue
+        ```
         <div v-for="item in list" ref="itemRefs"></div>
         ```
 
     -   在 Vue 3 中，这样的用法将不再在 $ref 中自动创建数组，需要使用更为灵活的方式
 
-        ```vue
+        ```
         <div v-for="item in list" :ref="setItemRef"></div>
 
         export default { data() { return { itemRefs: [] } }, methods: { setItemRef(el) { if (el) { this.itemRefs.push(el) } } } }
@@ -263,6 +263,7 @@
         渲染成 <a href="/home"><span>/home</span></a>
 
         参数：
+        · href：解析后的 URL。将会作为一个 `<a>` 元素的 href 属性。如果什么都没提供，则它会包含 base。
         · href：解析后的 URL。将会作为一个 `<a>` 元素的 href 属性。如果什么都没提供，则它会包含 base。
         · route：解析后的规范化的地址。
         · navigate：触发导航的函数。 会在必要时自动阻止事件，和 router-link 一样。例如：ctrl 或者 cmd + 点击仍然会被 navigate 忽略。

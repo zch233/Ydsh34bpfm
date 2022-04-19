@@ -6,6 +6,7 @@ import { clearPending } from '@/utils/http/index.js'
 import store from '@/store'
 import { includes } from 'lodash'
 import Layout from '@/layout/index'
+
 Vue.use(VueRouter)
 
 const routes = [
