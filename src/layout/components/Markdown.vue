@@ -5,8 +5,17 @@
 </template>
 
 <script>
+import hljs from 'highlight.js'
+
 export default {
     name: 'Markdown',
+    mounted() {
+        this.$nextTick(() => {
+            const blocks = document.querySelectorAll('pre code:not(.hljs)')
+            console.log(blocks, 111)
+            Array.prototype.forEach.call(blocks, hljs.highlightBlock)
+        })
+    },
 }
 </script>
 

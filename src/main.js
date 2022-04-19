@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@/assets/styles/elTheme/index.less'
+import 'highlight.js/styles/github.css'
 //svg-icon 组件
 import installSvgIcon from '@/components/SvgIcon/index.js'
 installSvgIcon(Vue)
