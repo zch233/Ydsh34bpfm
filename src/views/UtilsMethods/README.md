@@ -65,3 +65,41 @@ export const getBrowser = () => {
   };
 };
 ```
+
+## 获取 search 的参数 （一般用于是否存在 devmode 和 debug 的判断）
+
+```
+export const getUrlParams = (name) => {
+    var query = window.location.search.substring(1);
+    var params = query.split('&');
+    var allParams = {};
+    if (query) {
+        for (var i = 0; i < params.length; i++) {
+            var pair = params[i].split('=');
+            allParams[pair[0]] = pair[1];
+            if (pair[0] === name) return pair[1];
+        }
+    }
+    if (!name) return allParams;
+    return '';
+}
+
+//示例
+当前路径: http://localhost:10087/?debug=1&devmode=1#/utilsMethods
+getUrlParams() // {debug:'1',devmode:'1'}  未传参数返回参数对象
+getUrlParams('debug') // '1'
+getUrlParams('demo') // ''
+
+当前路径: http://localhost:10087/#/utilsMethods
+getUrlParams() // {}
+getUrlParams('debug') // ''
+
+```
+
+## 手机号和身份证号正则验证
+
+```
+const validataIdCard = idCard => /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCard);
+
+const validatePhone = phone => /^[1][3-9][0-9]{9}$/.test(phone);
+```
