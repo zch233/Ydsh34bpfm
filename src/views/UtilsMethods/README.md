@@ -96,10 +96,10 @@ getUrlParams('debug') // ''
 
 ```
 
-## 手机号和身份证号正则判断
+## 手机号和身份证号正则验证
 
 ```
 const validataIdCard = idCard => /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCard);
 
-const validatePhone = phone => /^[1][3,4,5,6,7,8,9][0-9]{9}$/.test(phone);
+const validatePhone = phone => /^[1][3-9][0-9]{9}$/.test(phone);
 ```
