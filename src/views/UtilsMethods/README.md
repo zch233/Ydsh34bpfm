@@ -66,40 +66,117 @@ export const getBrowser = () => {
 };
 ```
 
-## 获取 search 的参数 （一般用于是否存在 devmode 和 debug 的判断）
+## 获取/设置 location.search 的参数 （一般用于是否存在 devmode 和 debug 的判断）
 
 ```
-export const getUrlParams = (name) => {
-    var query = window.location.search.substring(1);
-    var params = query.split('&');
-    var allParams = {};
-    if (query) {
-        for (var i = 0; i < params.length; i++) {
-            var pair = params[i].split('=');
-            allParams[pair[0]] = pair[1];
-            if (pair[0] === name) return pair[1];
+export const queryString = {
+    get: (name) => {
+        const getAll = searchString => {
+            const query = searchString.replace(/^\?/, '');
+            const queryObject = {};
+            const queryArray = query.split('&').filter(i => i).forEach((string, index) => {
+                const parts = string.split('=');
+                queryObject[parts[0]] = decodeURIComponent(parts[1]);
+            });
+            return queryObject;
+        };
+        if (arguments.length === 0) {
+            return getAll(window.location.search);
+        } else {
+            return getAll(window.location.search)[name];
+        }
+    },
+    set: (name, value) => {
+        const set = (search, name, value) => {
+            const regex = new RegExp(`(${encodeURIComponent(name)})=([^&]*)`, '');
+            if (regex.test(search)) {
+                return search.replace(regex, (match, c1, c2) => `${c1}=${encodeURIComponent(value)}`);
+            } else {
+                return search.replace(/&?$/, `&${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
+            }
+        };
+        if (arguments.length === 1 && typeof name === 'object' && name !== null) {
+            let search = window.location.search;
+            for (let key in arguments[0]) {
+                search = set(search, key, arguments[0][key]);
+            }
+            window.location.search = search;
+        } else {
+            window.location.search = set(window.location.search, name, value);
+        }
+    },
+}
+```
+
+## 前端验证身份证
+
+```
+export const testIdCard = (idCard) => {
+    idCard = idCard.toString();
+    const city = { 11: '北京', 12: '天津', 13: '河北', 14: '山西', 15: '内蒙古', 21: '辽宁', 22: '吉林', 23: '黑龙江', 31: '上海', 32: '江苏', 33: '浙江', 34: '安徽', 35: '福建', 36: '江西', 37: '山东', 41: '河南', 42: '湖北', 43: '湖南', 44: '广东', 45: '广西', 46: '海南', 50: '重庆', 51: '四川', 52: '贵州', 53: '云南', 54: '西藏', 61: '陕西', 62: '甘肃', 63: '青海', 64: '宁夏', 65: '新疆', 71: '台湾', 81: '香港', 82: '澳门', 91: '国外' };
+    let num = idCard.toUpperCase();
+    if (!/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)) {
+        throw '身份证位数错误！';
+    }
+    if (city[parseInt(num.substring(0, 2))] === undefined) {
+        throw '身份证格式错误！';
+    }
+    const len = num.length;
+    let re = null;
+    if (len === 15) {
+        re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+        const arrSplit = num.match(re);
+        const dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+        const bGoodDay =
+            dtmBirth.getYear() === Number(arrSplit[2]) &&
+            dtmBirth.getMonth() + 1 === Number(arrSplit[3]) &&
+            dtmBirth.getDate() === Number(arrSplit[4]);
+        if (!bGoodDay) {
+            throw '身份证日期格式错误'
+        } else {
+            const arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+            const arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+            let nTemp = 0;
+            num = num.substring(0, 6) + '19' + num.substring(6, num.length - 6);
+            for (let i = 0; i < 14; i++) {
+                nTemp += num.substring(i, 1) * arrInt[i];
+            }
+            num += arrCh[nTemp % 11];
+            return true;
         }
     }
-    if (!name) return allParams;
-    return '';
+    if (len === 18) {
+        re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+        const arrSplit = num.match(re);
+        const dtmBirth = new Date(arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+        const bGoodDay =
+            dtmBirth.getFullYear() === Number(arrSplit[2]) &&
+            dtmBirth.getMonth() + 1 === Number(arrSplit[3]) &&
+            dtmBirth.getDate() === Number(arrSplit[4])
+        if (!bGoodDay) {
+            throw '身份证日期格式错误'
+        } else {
+            let valnum;
+            const arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+            const arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+            let nTemp = 0;
+            for (let i = 0; i < 17; i++) {
+                nTemp += num.substring(i, 1) * arrInt[i];
+            }
+            valnum = arrCh[nTemp % 11];
+            if (valnum !== num.substring(17, 1)) {
+                throw '身份证格式错误！'
+            }
+            return true;
+        }
+    }
 }
-
-//示例
-当前路径: http://localhost:10087/?debug=1&devmode=1#/utilsMethods
-getUrlParams() // {debug:'1',devmode:'1'}  未传参数返回参数对象
-getUrlParams('debug') // '1'
-getUrlParams('demo') // ''
-
-当前路径: http://localhost:10087/#/utilsMethods
-getUrlParams() // {}
-getUrlParams('debug') // ''
-
 ```
 
 ## 手机号和身份证号正则验证
 
 ```
-const validataIdCard = idCard => /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCard);
+export const validataIdCard = idCard => /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCard);
 
-const validatePhone = phone => /^[1][3-9][0-9]{9}$/.test(phone);
+export const validatePhone = phone => /^[1][3-9][0-9]{9}$/.test(phone);
 ```
