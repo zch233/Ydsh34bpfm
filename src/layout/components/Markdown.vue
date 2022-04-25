@@ -9,12 +9,19 @@ import hljs from 'highlight.js'
 
 export default {
     name: 'Markdown',
+    mounted() {
+        this.init()
+    },
     updated() {
-        this.$nextTick(() => {
-            const blocks = document.querySelectorAll('pre code:not(.hljs)')
-            console.log(blocks, 111)
-            Array.prototype.forEach.call(blocks, hljs.highlightBlock)
-        })
+        this.init()
+    },
+    methods: {
+        init() {
+            this.$nextTick(() => {
+                const blocks = document.querySelectorAll('pre code:not(.hljs)')
+                Array.prototype.forEach.call(blocks, hljs.highlightBlock)
+            })
+        },
     },
 }
 </script>
