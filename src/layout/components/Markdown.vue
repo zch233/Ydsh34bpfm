@@ -9,7 +9,7 @@ import hljs from 'highlight.js'
 
 export default {
     name: 'Markdown',
-    mounted() {
+    updated() {
         this.$nextTick(() => {
             const blocks = document.querySelectorAll('pre code:not(.hljs)')
             console.log(blocks, 111)
