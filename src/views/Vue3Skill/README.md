@@ -147,3 +147,11 @@ const myComponent = defineAsyncComponent({
   timeout: 3000 /* 超时时间 */,
 });
 ```
+
+## 浏览器设置，打印结果更加清晰
+
+<img src="./img1.png" />
+修改设置前
+<img src="./img3.png" />
+修改设置后，打印结果更加清晰
+<img src="./img2.png" />
