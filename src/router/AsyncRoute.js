@@ -27,7 +27,7 @@ export const constantRoutes = [
         path: '/vue3Skill',
         name: 'Vue3Skill',
         component: () => import('@/views/Vue3Skill/README.md'),
-        meta: { title: 'Vue3 小技巧', markdown: true },
+        meta: { title: 'Vue3 最佳实践', markdown: true },
     },
     {
         path: '/piniaLearn',
