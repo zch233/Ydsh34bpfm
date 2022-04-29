@@ -70,7 +70,7 @@ export const getBrowser = () => {
 
 ```
 export const queryString = {
-    get: (name) => {
+    get(name) {
         const getAll = searchString => {
             const query = searchString.replace(/^\?/, '');
             const queryObject = {};
@@ -86,7 +86,7 @@ export const queryString = {
             return getAll(window.location.search)[name];
         }
     },
-    set: (name, value) => {
+    set(name, value) {
         const set = (search, name, value) => {
             const regex = new RegExp(`(${encodeURIComponent(name)})=([^&]*)`, '');
             if (regex.test(search)) {
