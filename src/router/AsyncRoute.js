@@ -5,12 +5,12 @@ export const constantRoutes = [
         component: () => import('@/views/UtilsMethods/README.md'),
         meta: { title: '通用方法', markdown: true },
     },
-    {
-        path: '/standard',
-        name: 'Standard',
-        component: () => import('@/views/Standard/README.md'),
-        meta: { title: '代码规范', markdown: true },
-    },
+    // {
+    //     path: '/standard',
+    //     name: 'Standard',
+    //     component: () => import('@/views/Standard/README.md'),
+    //     meta: { title: '代码规范', markdown: true },
+    // },
     {
         path: '/codeReview',
         name: 'CodeReview',
