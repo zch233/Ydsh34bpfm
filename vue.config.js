@@ -1,6 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 const CompressionPlugin = require('compression-webpack-plugin')
 const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const path = require('path')
 function resolve(dir) {
     return path.join(__dirname, '.', dir)
@@ -57,7 +58,8 @@ module.exports = defineConfig({
             .loader('svgo-loader')
             .end()
 
-        config.module.rule('md')
+        config.module
+            .rule('md')
             .test(/\.md/)
             .use('vue-loader')
             .loader('vue-loader')
@@ -65,7 +67,7 @@ module.exports = defineConfig({
             .use('vue-markdown-loader')
             .loader('vue-markdown-loader/lib/markdown-compiler')
             .options({
-                raw: true
+                raw: true,
             })
 
         config.optimization.delete('splitChunks')
@@ -101,8 +103,12 @@ module.exports = defineConfig({
                     './TestModel': './packages/test-model/index.vue',
                 },
             }),
+            new NodePolyfillPlugin(),
             ...prodPlugins,
         ],
+        externals: {
+            fs: require('fs'),
+        },
     },
     css: {
         loaderOptions: {

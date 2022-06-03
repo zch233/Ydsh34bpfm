@@ -36,6 +36,18 @@ export const constantRoutes = [
         meta: { title: '两分钟上手 pinia', markdown: true },
     },
     {
+        path: '/exportExcel',
+        name: 'exportExcel',
+        component: () => import('@/views/ExportExcel/README.md'),
+        meta: { title: 'Excle前端导出', markdown: true },
+    },
+    {
+        path: '/exportExcelDemo',
+        name: 'exportExcelDemo',
+        component: () => import('@/views/ExportExcelDemo'),
+        meta: { title: 'Excle前端导出 Demo' },
+    },
+    {
         path: '/list',
         name: 'List',
         component: () => import('@/views/List'),
