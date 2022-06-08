@@ -55,7 +55,7 @@ export default {
     counterStore.j ++
 
     // 这里在视图里使用 counterStore.j 和 counterStore.k
-    // 但你不能解构 counterStore，只能像下面这样解构：
+    // 但你不能解构 counterStore，因为解构会失去响应式，只能像下面这样解构：
     const { j, k } = storeToRefs(counterStore)
     return {
       counterStore, j, k,
