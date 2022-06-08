@@ -1,7 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 const CompressionPlugin = require('compression-webpack-plugin')
-const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+// const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin
+// const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const path = require('path')
 function resolve(dir) {
     return path.join(__dirname, '.', dir)
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 module.exports = defineConfig({
     transpileDependencies: true,
-    publicPath: process.env.VUE_APP_PUBLIC_PATH,
+    publicPath: './',
     lintOnSave: 'warning',
     pages: {
         mobile: 'src/mobile.js',
@@ -95,17 +95,17 @@ module.exports = defineConfig({
         //     runtimeChunk: false,
         //     splitChunks: false,
         // },
-        plugins: [
-            new ModuleFederationPlugin({
-                name: 'comApp',
-                filename: 'remoteEntry.js',
-                exposes: {
-                    './TestModel': './packages/test-model/index.vue',
-                },
-            }),
-            new NodePolyfillPlugin(),
-            ...prodPlugins,
-        ],
+        // plugins: [
+        //     new ModuleFederationPlugin({
+        //         name: 'comApp',
+        //         filename: 'remoteEntry.js',
+        //         exposes: {
+        //             './TestModel': './packages/test-model/index.vue',
+        //         },
+        //     }),
+        //     new NodePolyfillPlugin(),
+        //     ...prodPlugins,
+        // ],
         externals: {
             fs: require('fs'),
         },
